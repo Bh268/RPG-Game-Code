@@ -4,169 +4,21 @@
 #include <ctime>
 #include <iostream>
 #include <string>
-#include "LevelingGame.cpp"
+#include <fstream>
+#include <stdio.h>
+#include "LevelingGameClasses.cpp"
 
-class Levels{
-    public:
-    void Leveling(int PointsToNextLevel);
-    
-    Levels();
-    
-    int Character();
-    int SkillPointOutPut();
-    
-    private:
-    int CharacterLevel_;
-    int NextLevel_;
-    int LevelCap_;
-    int SkillPoints_;
-    int PointsToNextLevel_;
-    
-    
-    
-};
-
-Levels::Levels(){
-    SkillPoints_ = 0;
-    CharacterLevel_ = 1;
-    NextLevel_ = 100;
-    LevelCap_ = 100;
-    return;
-}
-
-Attribute Attribute;
-
-void Levels::Leveling(int PointsToNextLevel){
-    char SkillPointUsage = 'x';
-    char UseSkillPoints = 'x';
-    char UnlockSpell = 'x';
-    
-    PointsToNextLevel_ = PointsToNextLevel;
-    
-    while ((PointsToNextLevel_ * 10) > NextLevel_ && CharacterLevel_ < LevelCap_){
-        
-        
-                    CharacterLevel_ = CharacterLevel_ + 1;
-                    
-                    PointsToNextLevel_ = ((PointsToNextLevel_ * 10) - 100) / 10;
-                    
-                    NextLevel_ = NextLevel_ + 10;
-                    
-                    SkillPoints_ = SkillPoints_ + 1;
-                    
-                    cout << "You Have Leveled Up From " << (CharacterLevel_ - 1) << " To " << CharacterLevel_ << "!" << endl;
-                    
-                    if (SkillPoints_ >= 5 || UnlockSpell == 'n' || UnlockSpell == 'N')
-                    cout << "You have " << SkillPoints_ << " Skill Points, would you like to any?(y/n)" << endl;
-                    cin >> UseSkillPoints;
-                    
-                    while (UseSkillPoints == 'y' || UseSkillPoints == 'Y'){
-                        cout << "What do you want to upgrade? (M = Magic, C = Crit., D = Defense, A = Attack, S = Stealth, H = Health)" << endl;
-                        cin >>SkillPointUsage;
-                        if (SkillPointUsage == 'm' || SkillPointUsage == 'M'){
-                            Attribute.MP = Attribute.MP + 5;
-                            cout << "You have upgraded your Magic from " << Attribute.MP - 5 << " to " << Attribute.MP << endl;
-                            SkillPoints_ = SkillPoints_ - 1;
-                            if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                        if (SkillPointUsage == 'c' || SkillPointUsage == 'C'){
-                         Attribute.Critical = Attribute.Critical + 5;
-                         cout << "You have upgraded your Crit. from " << Attribute.Critical - 5 << " to " << Attribute.Critical << endl;
-                         SkillPoints_ = SkillPoints_ - 1;
-                         if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                        if (SkillPointUsage == 'D' || SkillPointUsage == 'd'){
-                            Attribute.Defence = Attribute.Defence + 5;
-                            cout << "You have upgraded your Defence from " << Attribute.Defence - 5 << " to " << Attribute.Defence << endl;
-                            SkillPoints_ = SkillPoints_ - 1;
-                            if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                        if (SkillPointUsage == 'A' || SkillPointUsage == 'a'){
-                            Attribute.Damage = Attribute.Damage + 5;
-                            cout << "You have upgraded your Attack from " << Attribute.Damage - 5 << " to " << Attribute.Damage << "." << endl;
-                            SkillPoints_ = SkillPoints_ - 1;
-                            if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                        if (SkillPointUsage == 'S' || SkillPointUsage == 's'){
-                            Attribute.Stealth = Attribute.Stealth + 5;
-                            cout << "You have upgraded your Stealth from " << Attribute.Stealth - 5 << "to " << Attribute.Health << "." << endl;
-                            SkillPoints_ = SkillPoints_ - 1;
-                            if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                        if (SkillPointUsage == 'H' || SkillPointUsage == 'h'){
-                            Attribute.Health = Attribute.Health + 5;
-                            cout << "You Have Upgraded Your Health To: " << Attribute.Health << "." << endl;
-                            SkillPoints_ = SkillPoints_ - 1;
-                            if (SkillPoints_ >= 1){
-                                cout << "You have " << SkillPoints_ << " more points left, do you want to use any?" << endl;
-                                cin >> UseSkillPoints;
-                            }
-                            if (SkillPoints_ == 0){
-                                
-                            }
-                        }
-                    }
-                    }
-                    if (SkillPoints_ >= 5){
-                        cout << "You Currently Have " << SkillPoints_ << " Skill Points, You Can Use 5 To Unlock A Magical Spell" << endl;
-                        cout << "Would you like to unlock a spell?(y/n)" << endl;
-                        cin >> UnlockSpell;
-                        
-                        if (UnlockSpell == 'y' || UnlockSpell == 'Y'){
-                            cout << "These Are the Current Spells You Can Unlock: " << endl;
-                            
-                        }
-                        else if (UnlockSpell == 'n' || UnlockSpell == 'N'){
-                            
-                        }
-                        else{
-                            cout << "Please Enter A Valid Character: " << endl;
-                            cin >> UnlockSpell;
-                        }
-                    }
-                    return;
-}
-
-int Levels::Character(){
-    return CharacterLevel_;
-}
-
-int Levels::SkillPointOutPut(){
-    return SkillPoints_;
-}
 
 
     int main(){
+    
+    int intline;
+    
+    string line = "";
+    
+    ifstream fin;
+    
+    ofstream fout;
         
     Levels Levels;
     
@@ -268,6 +120,13 @@ int Levels::SkillPointOutPut(){
     SpellPoints[7] = 0;
     SpellPoints[8] = 0;
     
+    char YesOrNo;
+    
+    string Password;
+    
+    string PasswordEnter;
+    
+    
     
     while (esc == 'n' || esc == 'N'){
         
@@ -276,6 +135,7 @@ int Levels::SkillPointOutPut(){
         
         cout << "Enter Username or acquired code:" << endl;
         cin >> userName;
+        
         
         
         if (userName == CodeRequired.GodArmor){
@@ -517,11 +377,73 @@ int Levels::SkillPointOutPut(){
         
         
         if (userName == userName){
+            
+            if(ifstream (userName + ".txt")){
+                cout << "Would you like to load Save Game Data of Username " << userName << "?(y/n)" << endl;
+                cin >> YesOrNo;
+                
+                if (YesOrNo == 'Y' || YesOrNo == 'y'){
+                    fin.open (userName + ".txt");
+                    cout << "Please Enter Password: ";
+                    cin >> PasswordEnter;
+                    
+                    getline(fin, line);
+                    
+                    if (PasswordEnter == line){
+                    
+                    for (int lineno = 0; fin >> intline && lineno < 3; lineno++){
+                    if (lineno == 2){
+                    cout << "Your Character Level is: " << line << endl;
+                    int line1 = intline;
+                    }
+                    }
+                    
+                    for (int lineno = 0; fin >> intline && lineno < 4; lineno++){
+                    if (lineno == 3){
+                    int line2 = intline;
+                    }
+                    }
+                    
+                    for (int lineno = 0; fin >> intline && lineno < 3; lineno++){
+                    if (lineno == 4){
+                        
+                    }
+                    }
+                    
+                    Levels Levels(line1, line2, SkillPoints, PointsToNextLevel);
+                    fin.close();
+                    fout.open (userName + ".txt", ios::ate);
+                    }
+                    if (PasswordEnter != line){
+                        cout << "Wrong Password, Try Again; If this is not your Username, enter \'X\'" << endl;
+                        cin >> PasswordEnter;
+                        
+                        if (PasswordEnter == "x" || PasswordEnter == "x"){
+                            goto EnterUsername;
+                        }
+                    }
+                }
+                
+                if (YesOrNo == 'N' || YesOrNo =='n'){
+                    cout << "Overwritting Data..." << endl;
+                 
+                }
+            }
+            ofstream file(userName + ".txt");
+            
+            if (!file){
+                cout << "Could not Create Save Game Data." << endl;
+            }
+            cout << "Enter a new Password" << endl;
+            cin >> Password;
+            
             ClassChoose:
             ClassName = "";
             Class1 = 0;
             cout << "Enter Class or Class Code Aqcuired, Classes include Archer, Mage, Ninja, Warrior, or Witch:" << endl;
             cin >> Class;
+            
+            
             
             
             if (Class == CodeRequired.God){
@@ -1319,7 +1241,38 @@ int Levels::SkillPointOutPut(){
         
         
         if (esc == 'y' || esc == 'Y'){
-            cout << "Would you like to Save Game Data?(It Will Save To your UserName" << endl;
+            cout << "Saving Game Data, Do Not Force Close Program..." << endl;
+            
+            fout << Password << endl;
+            
+            fout << Level.CharacterLevel << endl;
+            
+            fout << NextLevel_ << endl;
+            
+            fout << ClassName << endl;
+            
+            fout << Attribute.Damage << endl;
+            fout << Attribute.Health << endl;
+            fout << Attribute.Defence << endl;
+            fout << Attribute.Critical << endl;
+            fout << Attribute.MP << endl;
+            fout << Attribute.Stealth << endl;
+            
+            
+            
+            fout.close();
+        fin.open(userName + ".txt");
+        fout.open("PreviousSaveGameData.txt");
+        cout << "Exiting Game" << endl;
+        
+        while (!fin.eof()){
+            getline(fin, line);
+            fout << line << endl;
+        }
+        
+        fin.close();
+        fout.close();
+            
     return 0;
     }
 }
